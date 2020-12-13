@@ -3,12 +3,12 @@ package com.example.smproject.tasks;
 import java.util.LinkedList;
 import java.util.List;
 
-public class stepTask extends Task {
+public class StepTask extends Task {
     protected int stepsAmount;
     protected int currentStep;
     List<String> stepGoals = new LinkedList<String>();
 
-    public stepTask(String goal, int daysTimeLimit, int stepsAmount, LinkedList<String> stepGoals) throws Exception {
+    public StepTask(String goal, int daysTimeLimit, int stepsAmount, LinkedList<String> stepGoals) throws Exception {
         super(goal, daysTimeLimit);
         this.stepsAmount = stepsAmount;
         this.currentStep = 1;
@@ -37,5 +37,25 @@ public class stepTask extends Task {
 
     public List<String> getStepGoals() {
         return stepGoals;
+    }
+
+    public void  nextStep()
+    {
+        currentStep++;
+    }
+
+    @Override
+    public String toString() {
+        return "StepTask{" +
+                "stepsAmount=" + stepsAmount +
+                ", currentStep=" + currentStep +
+                ", stepGoals=" + stepGoals +
+                ", goal='" + goal + '\'' +
+                ", picked=" + picked +
+                ", completed=" + completed +
+                ", endDate=" + endDate +
+                ", startDate=" + startDate +
+                ", completionDate=" + completionDate +
+                '}';
     }
 }

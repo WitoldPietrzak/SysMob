@@ -1,8 +1,10 @@
-package com.example.smproject;
+package com.example.smproject.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.smproject.R;
 
 public class TasksActivity extends AppCompatActivity {
 

@@ -36,12 +36,14 @@ public abstract class Task {
     }
 
     public String getRemainingTimeAsString() {
-        long timeInMillis = getRemainingTimeInMillis();
+        long timeInMillis =getRemainingTimeInMillis();
+        long days = TimeUnit.MILLISECONDS.toDays(timeInMillis);
         long hours = TimeUnit.MILLISECONDS.toHours(timeInMillis);
         long minutes = TimeUnit.MILLISECONDS.toMinutes(timeInMillis);
         long seconds = TimeUnit.MILLISECONDS.toSeconds(timeInMillis);
-        return String.format(Locale.getDefault(), "%02d h,%02d min, %02d sec",
-                hours,
+        return String.format(Locale.getDefault(), " %02d dni %02d h,%02d min, %02d sec",
+                days,
+                hours-TimeUnit.DAYS.toHours(days),
                 minutes - TimeUnit.HOURS.toMinutes(hours),
                 seconds - TimeUnit.MINUTES.toSeconds(minutes)
         );
@@ -71,5 +73,17 @@ public abstract class Task {
 
     public Date getStartDate() {
         return startDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "goal='" + goal + '\'' +
+                ", picked=" + picked +
+                ", completed=" + completed +
+                ", endDate=" + endDate +
+                ", startDate=" + startDate +
+                ", completionDate=" + completionDate +
+                '}';
     }
 }
