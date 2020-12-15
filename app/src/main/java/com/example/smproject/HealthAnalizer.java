@@ -48,6 +48,7 @@ public class HealthAnalizer {
     }
 
 
+
     public int getPositive_symptoms() {
         return positive_symptoms;
     }

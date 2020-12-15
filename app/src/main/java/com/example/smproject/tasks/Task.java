@@ -1,26 +1,32 @@
 package com.example.smproject.tasks;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
-public abstract class Task {
+public abstract class Task implements Serializable {
+    protected UUID taskID;
     protected String goal;
+    protected long experience;
     protected boolean picked;
     protected boolean completed;
-    protected Date endDate;
     protected Date startDate;
+    protected Date endDate;
     protected Date completionDate;
 
-    public Task(String goal, int daysTimeLimit) {
+    public Task(String goal, long experience, int daysTimeLimit) {
         Calendar cal = Calendar.getInstance();
         this.goal = goal;
         this.picked = false;
         this.startDate = cal.getTime();
         cal.add(Calendar.DATE, daysTimeLimit);
         this.endDate = cal.getTime();
-        this.completed=false;
+        this.completed = false;
+        this.taskID = UUID.randomUUID();
+        this.experience = experience;
     }
 
     public void pick() {
@@ -36,23 +42,22 @@ public abstract class Task {
     }
 
     public String getRemainingTimeAsString() {
-        long timeInMillis =getRemainingTimeInMillis();
+        long timeInMillis = getRemainingTimeInMillis();
         long days = TimeUnit.MILLISECONDS.toDays(timeInMillis);
         long hours = TimeUnit.MILLISECONDS.toHours(timeInMillis);
         long minutes = TimeUnit.MILLISECONDS.toMinutes(timeInMillis);
         long seconds = TimeUnit.MILLISECONDS.toSeconds(timeInMillis);
         return String.format(Locale.getDefault(), " %02d dni %02d h,%02d min, %02d sec",
                 days,
-                hours-TimeUnit.DAYS.toHours(days),
+                hours - TimeUnit.DAYS.toHours(days),
                 minutes - TimeUnit.HOURS.toMinutes(hours),
                 seconds - TimeUnit.MINUTES.toSeconds(minutes)
         );
     }
 
-    public void complete()
-    {
-        completed=true;
-        completionDate=Calendar.getInstance().getTime();
+    public void complete() {
+        completed = true;
+        completionDate = Calendar.getInstance().getTime();
     }
 
     public boolean isCompleted() {
@@ -73,6 +78,10 @@ public abstract class Task {
 
     public Date getStartDate() {
         return startDate;
+    }
+
+    public UUID getTaskID() {
+        return taskID;
     }
 
     @Override

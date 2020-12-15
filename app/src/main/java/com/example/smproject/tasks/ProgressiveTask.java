@@ -5,8 +5,8 @@ public class ProgressiveTask extends Task {
     protected long goalValue;
     protected long currentValue;
 
-    public ProgressiveTask(String goal, int daysTimeLimit, long goalValue, String unit) {
-        super(goal, daysTimeLimit);
+    public ProgressiveTask(String goal,long experience, int daysTimeLimit, long goalValue, String unit) {
+        super(goal,experience, daysTimeLimit);
         this.goalValue = goalValue;
         this.currentValue = 0;
         this.unit = unit;
