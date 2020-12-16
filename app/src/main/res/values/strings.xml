@@ -37,6 +37,7 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="showStatistics">Show Statistics</string>
+    <string name="hideStatistics">Hide Statistics</string>
     <string name="dummyStats">Ill: 7 000 \nDied: 30 \nRecovered: 8 000</string>
     <string name="dummyLevel">LVL 9</string>
     <string name="dummyXP">2800/4000</string>
