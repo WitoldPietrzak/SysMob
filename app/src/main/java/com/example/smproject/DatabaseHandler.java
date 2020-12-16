@@ -27,12 +27,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "SMDB";
     private static final String TABLE_1_NAME = "Users";
     private static final String TABLE_2_NAME = "Tasks";
-   // private static final String TABLE_3_NAME = "UserTasks";
+    // private static final String TABLE_3_NAME = "UserTasks";
     //private static final String[] TABLE_1_FIELDS = {"userName", "level", "experience", "isOnIsolation", "lastTaskCompletionDate", "isolationStartDate,stepsAmount,currentStep", "goalValue", "currentValue"};
     private static final String[] TABLE_1_FIELDS = {"userName", "userData"};
     // private static final String[] TABLE_2_FIELDS = {"taskID", "taskType", "goal", "experience", "picked", "completed", "startDate", "endDate", "completionDate"};
-    private static final String[] TABLE_2_FIELDS = {"taskID", "taskObject"};
-   // private static final String[] Table_3_FIELDS = {"userName", "taskID"};
+    private static final String[] TABLE_2_FIELDS = {"taskID", "taskData"};
+    // private static final String[] Table_3_FIELDS = {"userName", "taskID"};
 
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -41,6 +41,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
+
+
+
+                /*
+
         String CREATION_TABLE_1 = "CREATE TABLE IF NOT EXISTS " +
                 "Users " +
                 "(" +
@@ -51,7 +57,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 "lastTaskCompletionDate DATE," +
                 "isolationStartDate DATE" +
                 "); ";
-        /*
+
 
         String CREATION_TABLE_2 = "CREATE TABLE IF NOT EXISTS " +
                 "Tasks " +
@@ -72,11 +78,20 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 "); ";
 
          */
+
+
+        String CREATION_TABLE_1 = "CREATE TABLE IF NOT EXISTS " +
+                "Tasks " +
+                "(" +
+                "userName TEXT PRIMARY KEY," +
+                "userData BLOB NOT NULL" +
+                "); ";
+
         String CREATION_TABLE_2 = "CREATE TABLE IF NOT EXISTS " +
                 "Tasks " +
                 "(" +
                 "taskID TEXT PRIMARY KEY," +
-                "taskType BLOB NOT NULL" +
+                "taskData BLOB NOT NULL" +
                 "); ";
         /*
         String CREATION_TABLE_3 = "CREATE TABLE IF NOT EXISTS " +
@@ -125,7 +140,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        database.insert(TABLE_1_NAME,null,values);
+        database.insert(TABLE_1_NAME, null, values);
         database.close();
 
     }
@@ -143,7 +158,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             e.printStackTrace();
         }
 
-        database.insert(TABLE_2_NAME,null,values);
+        database.insert(TABLE_2_NAME, null, values);
         database.close();
 
     }
@@ -152,15 +167,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public User getUser(String userName) {
         SQLiteDatabase database = this.getReadableDatabase();
         String[] conditions = {userName};
-        Cursor cursor = database.query(TABLE_1_NAME,TABLE_1_FIELDS,TABLE_1_FIELDS[0]+" = ?",conditions,null,null,null);
-        if(cursor !=null && cursor.moveToFirst()){
+        Cursor cursor = database.query(TABLE_1_NAME, TABLE_1_FIELDS, TABLE_1_FIELDS[0] + " = ?", conditions, null, null, null);
+        if (cursor != null && cursor.moveToFirst()) {
             try {
                 ByteArrayInputStream in = new ByteArrayInputStream(cursor.getBlob(1));
                 ObjectInputStream is = new ObjectInputStream(in);
                 database.close();
                 cursor.close();
                 return (User) is.readObject();
-            }catch (IOException | ClassNotFoundException e){
+            } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
 
@@ -172,15 +187,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public Task getTask(UUID taskID) {
         SQLiteDatabase database = this.getReadableDatabase();
         String[] conditions = {taskID.toString()};
-        Cursor cursor = database.query(TABLE_2_NAME,TABLE_2_FIELDS,TABLE_2_FIELDS[0]+" = ?",conditions,null,null,null);
-        if(cursor !=null && cursor.moveToFirst()){
+        Cursor cursor = database.query(TABLE_2_NAME, TABLE_2_FIELDS, TABLE_2_FIELDS[0] + " = ?", conditions, null, null, null);
+        if (cursor != null && cursor.moveToFirst()) {
             try {
                 ByteArrayInputStream in = new ByteArrayInputStream(cursor.getBlob(1));
                 ObjectInputStream is = new ObjectInputStream(in);
                 database.close();
                 cursor.close();
                 return (Task) is.readObject();
-            }catch (IOException | ClassNotFoundException e){
+            } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
 
@@ -201,7 +216,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        database.update(TABLE_1_NAME,values,TABLE_1_FIELDS[0]+" = ?",conditions);
+        database.update(TABLE_1_NAME, values, TABLE_1_FIELDS[0] + " = ?", conditions);
         database.close();
 
     }
@@ -218,21 +233,21 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        database.update(TABLE_2_NAME,values,TABLE_2_FIELDS[0]+" = ?",conditions);
+        database.update(TABLE_2_NAME, values, TABLE_2_FIELDS[0] + " = ?", conditions);
         database.close();
     }
 
     public void deleteUser(User user) {
         SQLiteDatabase database = this.getWritableDatabase();
         String[] conditions = {user.getUserName()};
-        database.delete(TABLE_1_NAME,TABLE_1_FIELDS[0]+"= ?",conditions);
+        database.delete(TABLE_1_NAME, TABLE_1_FIELDS[0] + "= ?", conditions);
         database.close();
     }
 
     public void deleteTask(Task task) {
         SQLiteDatabase database = this.getWritableDatabase();
         String[] conditions = {String.valueOf(task.getTaskID().toString())};
-        database.delete(TABLE_2_NAME,TABLE_2_FIELDS[0]+"= ?",conditions);
+        database.delete(TABLE_2_NAME, TABLE_2_FIELDS[0] + "= ?", conditions);
         database.close();
     }
 
@@ -240,16 +255,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public List<Task> getAllTasks() {
         SQLiteDatabase database = this.getReadableDatabase();
         List<Task> tasks = new ArrayList<Task>();
-        Cursor cursor = database.query(TABLE_2_NAME,TABLE_2_FIELDS,null,null,null,null,null);
-        if(cursor !=null && cursor.moveToFirst()){
-            while (!cursor.isAfterLast()){
+        Cursor cursor = database.query(TABLE_2_NAME, TABLE_2_FIELDS, null, null, null, null, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
                 try {
                     ByteArrayInputStream in = new ByteArrayInputStream(cursor.getBlob(1));
                     ObjectInputStream is = new ObjectInputStream(in);
                     database.close();
                     cursor.close();
-                    tasks.add( (Task) is.readObject());
-                }catch (IOException | ClassNotFoundException e){
+                    tasks.add((Task) is.readObject());
+                } catch (IOException | ClassNotFoundException e) {
                     e.printStackTrace();
                 }
                 cursor.move(1);
@@ -257,8 +272,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             cursor.close();
             database.close();
             return tasks;
+        } else {
+            return null;
         }
-        else {return null;}
     }
 
 }

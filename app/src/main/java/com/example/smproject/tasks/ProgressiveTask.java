@@ -1,5 +1,7 @@
 package com.example.smproject.tasks;
 
+import java.util.Timer;
+
 public class ProgressiveTask extends Task {
     protected String unit;
     protected long goalValue;
@@ -43,4 +45,8 @@ public class ProgressiveTask extends Task {
                 ", completionDate=" + completionDate +
                 '}';
     }
+
+
+
+
 }

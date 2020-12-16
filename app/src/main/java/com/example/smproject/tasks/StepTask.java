@@ -8,7 +8,7 @@ public class StepTask extends Task {
     protected int currentStep;
     List<String> stepGoals = new LinkedList<String>();
 
-    public StepTask(String goal,long experience, int daysTimeLimit, int stepsAmount, LinkedList<String> stepGoals) throws Exception {
+    public StepTask(String goal,long experience, int daysTimeLimit, int stepsAmount, List<String> stepGoals) throws Exception {
         super(goal,experience, daysTimeLimit);
         this.stepsAmount = stepsAmount;
         this.currentStep = 1;

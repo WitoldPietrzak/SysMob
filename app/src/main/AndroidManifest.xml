@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.HealthAnalyzeActivity"></activity>
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:label="@string/title_activity_login"></activity>
+        <activity android:name=".Activities.HealthAnalyzeActivity" />
         <activity android:name=".Activities.TasksActivity" />
         <activity android:name=".Activities.CalendarActivity" />
         <activity android:name=".Activities.MainActivity">

@@ -68,6 +68,14 @@ public abstract class Task implements Serializable {
         return goal;
     }
 
+    public long getExperience() {
+        return experience;
+    }
+
+    public Date getCompletionDate() {
+        return completionDate;
+    }
+
     public boolean isPicked() {
         return picked;
     }

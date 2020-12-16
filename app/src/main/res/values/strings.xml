@@ -6,6 +6,7 @@
     <string name="start_test">Start Test</string>
     <string name="stop">stop</string>
     <string name="yes">yes</string>
+    <string name="take">Take Task</string>
     <string name="no">no</string>
     <string name="breath">Please hold your breath for as long as you can</string>
     <string name="test_info">This test will help you check if you have any of covid sympthoms</string>
@@ -26,4 +27,18 @@
         <item>fever</item>
         <item>cough</item>
     </string-array>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="showStatistics">Show Statistics</string>
+    <string name="dummyStats">Ill: 7 000 \nDied: 30 \nRecovered: 8 000</string>
+    <string name="dummyLevel">LVL 9</string>
+    <string name="dummyXP">2800/4000</string>
+    <string name="dummyStreak">9 Days streak!</string>
 </resources>
