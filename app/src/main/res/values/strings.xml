@@ -38,8 +38,13 @@
     <string name="login_failed">"Login failed"</string>
     <string name="showStatistics">Show Statistics</string>
     <string name="hideStatistics">Hide Statistics</string>
-    <string name="dummyStats">Ill: 7 000 \nDied: 30 \nRecovered: 8 000</string>
+    <string name="dummyStats">No data accquired \n Please check your connection</string>
     <string name="dummyLevel">LVL 9</string>
     <string name="dummyXP">2800/4000</string>
     <string name="dummyStreak">9 Days streak!</string>
+    <string name="poland">Poland</string>
+    <string name="global">Global</string>
+    <string name="levelDisplay">LVL {0}</string>
+    <string name="experienceDisplay">{0}/{1}</string>
+    <string name="daysDisplay">{0} Days streak</string>
 </resources>

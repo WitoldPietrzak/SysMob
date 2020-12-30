@@ -81,14 +81,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
         String CREATION_TABLE_1 = "CREATE TABLE IF NOT EXISTS " +
-                "Tasks " +
+                "Users" +
                 "(" +
                 "userName TEXT PRIMARY KEY," +
                 "userData BLOB NOT NULL" +
                 "); ";
 
         String CREATION_TABLE_2 = "CREATE TABLE IF NOT EXISTS " +
-                "Tasks " +
+                "Tasks" +
                 "(" +
                 "taskID TEXT PRIMARY KEY," +
                 "taskData BLOB NOT NULL" +

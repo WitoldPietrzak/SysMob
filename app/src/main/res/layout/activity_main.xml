@@ -33,11 +33,12 @@
         android:id="@+id/MA_StatsTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_below="@id/MA_expView"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
         android:text="@string/dummyStats"
         android:textAlignment="textStart"
-        android:textSize="30sp"
+        android:textSize="20sp"
         android:visibility="invisible" />
 
     <Button
@@ -49,36 +50,45 @@
         android:text="@string/showStatistics" />
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/MA_progressBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="false"
         android:layout_marginBottom="5dp"
         android:progress="70" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/MA_levelView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/progressBar"
+        android:layout_below="@+id/MA_progressBar"
         android:layout_marginStart="10dp"
         android:text="@string/dummyLevel" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/MA_expView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/progressBar"
+        android:layout_below="@+id/MA_progressBar"
         android:layout_centerHorizontal="true"
         android:text="@string/dummyXP" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/MA_streakView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignBottom="@+id/MA_expView"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="10dp"
         android:text="@string/dummyStreak" />
+
+    <TextView
+        android:id="@+id/MA_statsRegion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/MA_StatsButton"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible" />
 </RelativeLayout>
