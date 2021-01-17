@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
@@ -96,9 +98,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (statsView.getVisibility() == View.INVISIBLE) {
                     statsView.setVisibility(View.VISIBLE);
+                    showStatsText();
                     statsRegion.setVisibility(View.VISIBLE);
                     try {
-                        showGlobalStats();
+                        statsView.setText(statsManager.getStatsGlobal());
+                        statsRegion.setText("Global");
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -106,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 statsView.setVisibility(View.INVISIBLE);
+                hideStatsText();
                 statsRegion.setVisibility(View.INVISIBLE);
                 statsButton.setText(getResources().getString(R.string.showStatistics));
             }
@@ -190,12 +195,77 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void showGlobalStats() throws JSONException {
-        statsView.setText(statsManager.getStatsGlobal());
+        //statsView.setText(statsManager.getStatsGlobal());
+        updateStatsText(statsManager.getStatsGlobal());
         statsRegion.setText("Global");
     }
 
     private void showLocalStats() throws JSONException {
-        statsView.setText(statsManager.getStatsPoland());
+        //statsView.setText(statsManager.getStatsPoland());
+        updateStatsText(statsManager.getStatsPoland());
+    }
+
+    private void updateStatsText(final String text)
+    {
+        final Animation inAnimation = new AlphaAnimation(0.0f, 1.0f);
+        inAnimation.setDuration(500);
+        Animation outAnimation = new AlphaAnimation(1.0f, 0.0f);
+        outAnimation.setDuration(500);
+        outAnimation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                statsView.setText(text);
+                statsView.startAnimation(inAnimation);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        statsView.startAnimation(outAnimation);
+    }
+
+    private void showStatsText()
+    {
+        final Animation inAnimation = new AlphaAnimation(0.0f, 1.0f);
+        inAnimation.setDuration(500);
+        statsView.startAnimation(inAnimation);
+    }
+    private void hideStatsText()
+    {
+        Animation outAnimation = new AlphaAnimation(1.0f, 0.0f);
+        outAnimation.setDuration(500);
+        statsView.setAnimation(outAnimation);
+    }
+    private void showfadeText()
+    {
+        final Animation inAnimation = new AlphaAnimation(0.0f, 1.0f);
+        inAnimation.setDuration(500);
+        Animation outAnimation = new AlphaAnimation(1.0f, 0.0f);
+        outAnimation.setDuration(500);
+        outAnimation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                statsView.startAnimation(inAnimation);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        statsView.startAnimation(outAnimation);
     }
 
 

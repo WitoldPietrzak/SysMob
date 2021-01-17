@@ -3,6 +3,8 @@ package com.example.smproject;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -95,4 +97,5 @@ public class CalendarView extends LinearLayout {
     public void setStopButtonListener(OnClickListener onClickListener) {
         stopIsolationButton.setOnClickListener(onClickListener);
     }
+
 }

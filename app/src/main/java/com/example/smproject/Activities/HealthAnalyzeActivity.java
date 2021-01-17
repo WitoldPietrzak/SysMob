@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -27,22 +29,24 @@ public class HealthAnalyzeActivity extends AppCompatActivity {
         healthAnalizer = new HealthAnalizer(this);
         breathChecker = new BreathChecker();
 
-        startButton=findViewById(R.id.HA_StartButton);
-        yesButton=findViewById(R.id.HA_YesButton);
-        noButton=findViewById(R.id.HA_NoButton);
-        textView=findViewById(R.id.HA_titleTextView);
+        startButton = findViewById(R.id.HA_StartButton);
+        yesButton = findViewById(R.id.HA_YesButton);
+        noButton = findViewById(R.id.HA_NoButton);
+        textView = findViewById(R.id.HA_titleTextView);
 
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 breathChecker.Start();
-                textView.setText(R.string.breath);
+                //textView.setText(R.string.breath);
+                updateText(getResources().getString(R.string.breath));
                 startButton.setText(R.string.stop);
                 startButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         breathChecker.Stop();
-                        textView.setText(healthAnalizer.getCurrentQuestion());
+                        //textView.setText(healthAnalizer.getCurrentQuestion());
+                        updateText(healthAnalizer.getCurrentQuestion());
                         startButton.setVisibility(View.INVISIBLE);
                         yesButton.setVisibility(View.VISIBLE);
                         noButton.setVisibility(View.VISIBLE);
@@ -54,34 +58,59 @@ public class HealthAnalyzeActivity extends AppCompatActivity {
         yesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                healthAnalizer.sendAnswer(true);
-                if(healthAnalizer.getCurrentQuestion()==null)
-                {
-                    endAnalise();
-                    return;
-                }
-                textView.setText(healthAnalizer.getCurrentQuestion());
+                sendAnswer(true);
             }
         });
+
 
         noButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                healthAnalizer.sendAnswer(false);
-                if(healthAnalizer.getCurrentQuestion()==null)
-                {
-                    endAnalise();
-                    return;
-                }
-                textView.setText(healthAnalizer.getCurrentQuestion());
+                sendAnswer(false);
             }
         });
 
     }
-    private void endAnalise()
-    {
-        textView.setText(healthAnalizer.analyzeResults(breathChecker.hasCovid()));
+
+    private void endAnalise() {
+        //textView.setText(healthAnalizer.analyzeResults(breathChecker.hasCovid()));
+        updateText(healthAnalizer.analyzeResults(breathChecker.hasCovid()));
         yesButton.setVisibility(View.INVISIBLE);
         noButton.setVisibility(View.INVISIBLE);
+    }
+
+    private void sendAnswer(boolean answer) {
+        healthAnalizer.sendAnswer(answer);
+        if (healthAnalizer.getCurrentQuestion() == null) {
+            endAnalise();
+            return;
+        }
+        updateText(healthAnalizer.getCurrentQuestion());
+    }
+
+    private void updateText(final String text)
+    {
+        final Animation inAnimation = new AlphaAnimation(0.0f, 1.0f);
+        inAnimation.setDuration(500);
+        Animation outAnimation = new AlphaAnimation(1.0f, 0.0f);
+        outAnimation.setDuration(500);
+        outAnimation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                textView.setText(text);
+                textView.startAnimation(inAnimation);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        textView.startAnimation(outAnimation);
     }
 }

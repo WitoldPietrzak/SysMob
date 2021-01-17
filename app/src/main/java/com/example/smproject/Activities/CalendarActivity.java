@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 
 import com.example.smproject.CalendarView;
 import com.example.smproject.DatabaseHandler;
@@ -39,6 +41,9 @@ public class CalendarActivity extends AppCompatActivity {
                 calendarView.updateCalendar(user.getIsolationStartDate(),user.getIsolationEndDate(),user.isOnIsolation());
             }
         });
+        Animation inAnimation = new AlphaAnimation(0.0f,1.0f);
+        inAnimation.setDuration(2000);
+        calendarView.setAnimation(inAnimation);
     }
 
     @Override
