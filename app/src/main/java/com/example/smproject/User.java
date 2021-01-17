@@ -68,6 +68,10 @@ public class User implements Serializable {
         return isolationStartDate;
     }
 
+    public Date getIsolationEndDate() {
+        return isolationEndDate;
+    }
+
     public void addXP(long experience) {
         this.experience += experience;
         while (this.experience > (level * 500) / 2) {
@@ -103,4 +107,5 @@ public class User implements Serializable {
             this.currentTasks.remove(task);
         }
     }
+
 }

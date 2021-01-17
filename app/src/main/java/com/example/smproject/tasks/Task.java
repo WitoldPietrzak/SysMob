@@ -1,5 +1,7 @@
 package com.example.smproject.tasks;
 
+import com.google.gson.Gson;
+
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
@@ -102,5 +104,11 @@ public abstract class Task implements Serializable {
                 ", startDate=" + startDate +
                 ", completionDate=" + completionDate +
                 '}';
+    }
+
+    public String Serialize()
+    {
+        Gson gson = new Gson();
+        return gson.toJson(this);
     }
 }

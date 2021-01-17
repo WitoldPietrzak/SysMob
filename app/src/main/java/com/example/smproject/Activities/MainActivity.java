@@ -2,11 +2,11 @@ package com.example.smproject.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -14,6 +14,7 @@ import com.example.smproject.DatabaseHandler;
 import com.example.smproject.R;
 import com.example.smproject.StatsManager;
 import com.example.smproject.User;
+import com.example.smproject.tasks.TasksManager;
 
 import org.json.JSONException;
 
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     Button calendarButton;
     Button analyserButton;
     Button statsButton;
+    ImageButton userPanelButton;
     TextView statsView;
     TextView statsRegion;
     TextView lvlView;
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     TextView expView;
     ProgressBar progressBar;
     StatsManager statsManager;
+    TasksManager tasksManager;
 
 
     User user;
@@ -57,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
         expView = findViewById(R.id.MA_expView);
         streakView = findViewById(R.id.MA_streakView);
         progressBar = findViewById(R.id.MA_progressBar);
+        userPanelButton = findViewById(R.id.MA_UserPanelButton);
+
 
         DatabaseHandler databaseHandler = new DatabaseHandler(this);
         user = databaseHandler.getUser("TestUser");
@@ -66,17 +71,24 @@ public class MainActivity extends AppCompatActivity {
             databaseHandler.close();
         }
 
+        tasksManager = new TasksManager(user.getCurrentTasks());
+        tasksManager.updateTasks(user.getCompletedTasks());
+
+
         analyserButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToAvtivity(HealthAnalyzeActivity.class);
+                goToActivity(HealthAnalyzeActivity.class);
             }
         });
 
         tasksButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToAvtivity(TasksActivity.class);
+                Intent intent = new Intent(getApplicationContext(),TasksActivity.class);
+                intent.putExtra("tasksManager",tasksManager);
+                intent.putExtra("user",user);
+                startActivity(intent);
             }
         });
         statsButton.setOnClickListener(new View.OnClickListener() {
@@ -119,7 +131,25 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        userPanelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),UserPanelActivity.class);
+                intent.putExtra("user",user);
+                startActivity(intent);
+            }
+        });
         updateDisplay();
+
+        calendarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),CalendarActivity.class);
+                intent.putExtra("user",user);
+                startActivity(intent);
+            }
+        });
 
 
     }
@@ -144,10 +174,11 @@ public class MainActivity extends AppCompatActivity {
         streakView.setText(MessageFormat.format(getResources().getString(R.string.daysDisplay),user.getDayStreak()));
     }
 
-    private void goToAvtivity(Class activity) {
+    private void goToActivity(Class activity) {
         Intent intent = new Intent(this, activity);
         startActivity(intent);
     }
+
 
     private void showGlobalStats() throws JSONException {
         statsView.setText(statsManager.getStatsGlobal());

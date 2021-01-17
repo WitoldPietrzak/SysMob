@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.smproject">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -11,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".Activities.TaskDetailActivity"></activity>
+        <activity android:name=".Activities.UserPanelActivity" />
         <activity android:name=".Activities.HealthAnalyzeActivity" />
         <activity android:name=".Activities.TasksActivity" />
         <activity android:name=".Activities.CalendarActivity" />

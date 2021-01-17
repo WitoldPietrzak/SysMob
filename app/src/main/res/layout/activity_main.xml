@@ -36,7 +36,6 @@
         android:layout_below="@id/MA_expView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:text="@string/dummyStats"
         android:textAlignment="textStart"
         android:textSize="20sp"
         android:visibility="invisible" />
@@ -64,16 +63,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/MA_progressBar"
-        android:layout_marginStart="10dp"
-        android:text="@string/dummyLevel" />
+        android:layout_marginStart="10dp" />
 
     <TextView
         android:id="@+id/MA_expView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/MA_progressBar"
-        android:layout_centerHorizontal="true"
-        android:text="@string/dummyXP" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:id="@+id/MA_streakView"
@@ -81,8 +78,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/MA_expView"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="10dp"
-        android:text="@string/dummyStreak" />
+        android:layout_marginEnd="10dp" />
 
     <TextView
         android:id="@+id/MA_statsRegion"
@@ -91,4 +87,14 @@
         android:layout_below="@+id/MA_StatsButton"
         android:layout_centerHorizontal="true"
         android:visibility="invisible" />
+
+    <ImageButton
+        android:id="@+id/MA_UserPanelButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/MA_streakView"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        app:srcCompat="@android:drawable/ic_menu_today" />
 </RelativeLayout>
