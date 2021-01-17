@@ -102,6 +102,15 @@ public class User implements Serializable {
             }
         }
     }
+    public void updateStreak()
+    {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_MONTH,-2);
+        if(lastTaskCompletionDate == null ||lastTaskCompletionDate.before(calendar.getTime()))
+        {
+            dayStreak=0;
+        }
+    }
 
     public void stopIsolation(){
         if(isOnIsolation) {
@@ -120,7 +129,13 @@ public class User implements Serializable {
             addXP(task.getExperience());
             totalTasksCompleted++;
             task.complete();
-            //TODO day streak update
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.DAY_OF_MONTH,-2);
+            if(lastTaskCompletionDate.after(calendar.getTime()))
+            {
+                dayStreak++;
+            }
+
             lastTaskCompletionDate.setTime(task.getCompletionDate().getTime());
             this.currentTasks.remove(task);
         }

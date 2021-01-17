@@ -179,6 +179,8 @@ public class MainActivity extends AppCompatActivity {
         lvlView.setText(MessageFormat.format(getResources().getString(R.string.levelDisplay), user.getLevel()));
         expView.setText(MessageFormat.format(getResources().getString(R.string.experienceDisplay), user.getExperience(), user.getExperienceCap()));
         streakView.setText(MessageFormat.format(getResources().getString(R.string.daysDisplay),user.getDayStreak()));
+        progressBar.setProgress((int) (user.getExperience()/user.getExperienceCap()),true);
+
     }
 
     private void goToActivity(Class activity) {
