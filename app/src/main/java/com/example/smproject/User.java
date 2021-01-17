@@ -22,6 +22,7 @@ public class User implements Serializable {
 
     public User(String userName) {
         this.userName = userName;
+        updateIsolationStatus();
     }
 
     public String getUserName() {
@@ -90,6 +91,23 @@ public class User implements Serializable {
         isolationStartDate = cal.getTime();
         cal.add(Calendar.DATE, length);
         isolationEndDate = cal.getTime();
+    }
+
+    public void updateIsolationStatus() {
+        Calendar cal = Calendar.getInstance();
+        if (isOnIsolation) {
+            if (cal.getTime().after(isolationEndDate)) {
+                isOnIsolation = false;
+
+            }
+        }
+    }
+
+    public void stopIsolation(){
+        if(isOnIsolation) {
+            isolationEndDate = Calendar.getInstance().getTime();
+            isOnIsolation= false;
+        }
     }
 
     public void addTask(Task task){

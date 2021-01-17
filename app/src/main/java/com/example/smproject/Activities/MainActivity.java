@@ -68,8 +68,8 @@ public class MainActivity extends AppCompatActivity {
         if (user == null) {
             user = new User("TestUser");
             databaseHandler.addUser(user);
-            databaseHandler.close();
         }
+        databaseHandler.close();
 
         tasksManager = new TasksManager(user.getCurrentTasks());
         tasksManager.updateTasks(user.getCompletedTasks());
@@ -157,6 +157,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        DatabaseHandler databaseHandler = new DatabaseHandler(this);
+        user = databaseHandler.getUser("TestUser");
+        if (user == null) {
+            user = new User("TestUser");
+            databaseHandler.addUser(user);
+        }
+        databaseHandler.close();
         updateDisplay();
     }
 
