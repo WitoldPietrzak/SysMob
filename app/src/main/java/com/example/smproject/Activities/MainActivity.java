@@ -3,6 +3,7 @@ package com.example.smproject.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     ProgressBar progressBar;
     StatsManager statsManager;
     TasksManager tasksManager;
+    MediaPlayer mediaPlayer;
 
 
     User user;
@@ -63,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
         streakView = findViewById(R.id.MA_streakView);
         progressBar = findViewById(R.id.MA_progressBar);
         userPanelButton = findViewById(R.id.MA_UserPanelButton);
+
+        mediaPlayer = MediaPlayer.create(this,R.raw.klik);
 
 
         DatabaseHandler databaseHandler = new DatabaseHandler(this);
@@ -170,6 +174,7 @@ public class MainActivity extends AppCompatActivity {
         }
         databaseHandler.close();
         updateDisplay();
+        startAnimation();
     }
 
     @Override
@@ -266,6 +271,29 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         statsView.startAnimation(outAnimation);
+    }
+
+    private void startAnimation()
+    {
+        ViewAInAnim(analyserButton,0);
+        ViewAInAnim(tasksButton,1000);
+        ViewAInAnim(calendarButton,2000);
+        ViewAInAnim(statsButton,3000);
+
+        ViewAInAnim(userPanelButton,4000);
+        ViewAInAnim(lvlView,4000);
+        ViewAInAnim(streakView,4000);
+        ViewAInAnim(expView,4000);
+        ViewAInAnim(progressBar,4000);
+
+    }
+
+    private void ViewAInAnim(View view, long offset)
+    {
+        Animation animation = new AlphaAnimation(0.0f,1.0f);
+        animation.setDuration(1000);
+        animation.setStartOffset(offset);
+        view.setAnimation(animation);
     }
 
 
