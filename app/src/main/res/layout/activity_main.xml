@@ -8,7 +8,7 @@
 
     <Button
         android:id="@+id/MA_TasksButton"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/MA_HealthAnalyzerButton"
         android:layout_centerInParent="true"
@@ -16,14 +16,14 @@
 
     <Button
         android:id="@+id/MA_HealthAnalyzerButton"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:text="@string/health_analyze" />
 
     <Button
         android:id="@+id/MA_CalendarButton"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/MA_TasksButton"
         android:layout_centerHorizontal="true"
@@ -31,18 +31,18 @@
 
     <TextView
         android:id="@+id/MA_StatsTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/MA_expView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="75dp"
         android:textAlignment="textStart"
         android:textSize="20sp"
         android:visibility="invisible" />
 
     <Button
         android:id="@+id/MA_StatsButton"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/MA_CalendarButton"
         android:layout_centerHorizontal="true"
@@ -52,7 +52,8 @@
         android:id="@+id/MA_progressBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40sp"
+        android:scaleY="5"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="false"
         android:layout_marginBottom="5dp"
@@ -80,9 +81,9 @@
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="10dp" />
 
-    <TextView
+    <Button
         android:id="@+id/MA_statsRegion"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/MA_StatsButton"
         android:layout_centerHorizontal="true"

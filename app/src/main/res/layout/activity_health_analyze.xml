@@ -8,8 +8,9 @@
 
     <TextView
         android:id="@+id/HA_titleTextView"
-        android:layout_width="200dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:textAlignment="center"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="90dp"
