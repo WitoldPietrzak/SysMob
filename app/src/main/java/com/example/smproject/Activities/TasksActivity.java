@@ -24,9 +24,9 @@ public class TasksActivity extends AppCompatActivity {
     TasksManager tasksManager;
     List<String> steptaskgoals = Arrays.asList("1.Weź mąkę", "Dodaj trochę przypraw", "Tadaaaaaa!");
     List<Task> dailyTasksPool = Arrays.asList(
-            new SingleTask("Wyśpij się!", 100, 15),
-            new StepTask("Przygotuj pizzę!", 2000, 4, 3, steptaskgoals),
-            new ProgressiveTask("Spędź godzinę na czytaniu książki! ", 100, 2, 60, "minut"));
+            new SingleTask("Get some sleep!", 100, 15),
+            new StepTask("Make a pizza!", 2000, 4, 3, steptaskgoals),
+            new ProgressiveTask("Read a book for an hour! ", 100, 2, 60, "minut"));
     User user;
 
     TextView task1;

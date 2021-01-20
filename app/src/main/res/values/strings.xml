@@ -17,7 +17,7 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="breath">Please hold your breath for as long as you can</string>
-    <string name="test_info">This test will help you check if you have any of covid symptoms</string>
+    <string name="test_info">This test will help you check if you have any of covid symptoms \n \n \n Please be aware that it is not meant to replace doctor\'s opinion, does not represend valid medical diagnosis, and should be treated with distance</string>
     <string name="no_symptoms_found">No symptoms were found</string>
     <string name="some_sympthoms">You have between 1 and 3 symptoms.</string>
     <string name="a_lot_of_sympthoms">You have at least 3 symptoms.</string>
@@ -26,14 +26,14 @@
     <string name="call_doctor">You should definitely call the doctor</string>
     <string name="consider_doctor">Consider consulting doctor to make sure you are fine.</string>
     <string-array name="symptoms">
-        <item>Aches and Pains</item>
-        <item>Sore throat</item>
-        <item>Diarrhea</item>
-        <item>Conjunctivitis</item>
-        <item>Loss of taste or smell</item>
-        <item>Tiredness</item>
-        <item>Fever</item>
-        <item>Cough</item>
+        <item>Have you recently suffered from: \nAches and Pains</item>
+        <item>Have you recently suffered from: \n Sore throat</item>
+        <item>Have you recently suffered from: \n Diarrhea</item>
+        <item>Have you recently suffered from: \nConjunctivitis</item>
+        <item>Have you recently suffered from: \nLoss of taste or smell</item>
+        <item>Have you recently suffered from: \nTiredness</item>
+        <item>Have you recently suffered from: \nFever (over 37.7 C)</item>
+        <item>Have you recently suffered from: \nCough</item>
     </string-array>
     <!-- Tasks strings -->
     <string name="take">Take Task</string>

@@ -49,7 +49,7 @@ public abstract class Task implements Serializable {
         long hours = TimeUnit.MILLISECONDS.toHours(timeInMillis);
         long minutes = TimeUnit.MILLISECONDS.toMinutes(timeInMillis);
         long seconds = TimeUnit.MILLISECONDS.toSeconds(timeInMillis);
-        return String.format(Locale.getDefault(), " %02d dni %02d h,%02d min, %02d sec",
+        return String.format(Locale.getDefault(), " %02d days %02d h,%02d min, %02d sec",
                 days,
                 hours - TimeUnit.DAYS.toHours(days),
                 minutes - TimeUnit.HOURS.toMinutes(hours),

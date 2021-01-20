@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    android:background="@color/colorPrimaryDark">
+    android:background="#1F1E22">
 
     <TextView
         android:id="@+id/SSII_taskName"
@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
         android:width="100dp"
-        android:background="@color/colorAccent"
+        android:background="@color/darkerTextColor"
         android:text="taskName"
         android:textAlignment="center" />
 
@@ -22,7 +22,7 @@
         android:layout_margin="4dp"
         android:layout_weight="1"
         android:width="30dp"
-        android:background="@color/colorAccent"
+        android:background="@color/darkerTextColor"
         android:text="XP"
         android:textAlignment="center" />
 
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
         android:layout_weight="1"
-        android:background="@color/colorAccent"
+        android:background="@color/darkerTextColor"
         android:text="timeRemaining"
         android:textAlignment="center" />
 </LinearLayout>

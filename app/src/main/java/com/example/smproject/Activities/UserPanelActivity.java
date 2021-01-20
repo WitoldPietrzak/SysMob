@@ -107,6 +107,15 @@ public class UserPanelActivity extends AppCompatActivity {
 
 
         }
+        if(userTasks.isEmpty())
+        {
+            TextView textView = new TextView(this);
+            textView.setText("No tasks avalible at the moment");
+            textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            textView.setPadding(0,350,0,0);
+            textView.setTextColor(getResources().getColor(R.color.darkerTextColor));
+            taskListLayout.addView(textView);
+        }
         thread = new Thread() {
 
             @Override
