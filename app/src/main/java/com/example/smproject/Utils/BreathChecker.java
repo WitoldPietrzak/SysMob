@@ -1,4 +1,4 @@
-package com.example.smproject;
+package com.example.smproject.Utils;
 
 public class BreathChecker {
     long startTime;

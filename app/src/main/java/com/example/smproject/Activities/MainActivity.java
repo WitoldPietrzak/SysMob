@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.example.smproject.DatabaseHandler;
 import com.example.smproject.R;
-import com.example.smproject.StatsManager;
+import com.example.smproject.Utils.StatsManager;
 import com.example.smproject.User;
 import com.example.smproject.tasks.TasksManager;
 
@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        startAnimation();
     }
 
     @Override
@@ -174,7 +174,6 @@ public class MainActivity extends AppCompatActivity {
         }
         databaseHandler.close();
         updateDisplay();
-        startAnimation();
     }
 
     @Override
@@ -189,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
         lvlView.setText(MessageFormat.format(getResources().getString(R.string.levelDisplay), user.getLevel()));
         expView.setText(MessageFormat.format(getResources().getString(R.string.experienceDisplay), user.getExperience(), user.getExperienceCap()));
         streakView.setText(MessageFormat.format(getResources().getString(R.string.daysDisplay),user.getDayStreak()));
-        progressBar.setProgress((int) (user.getExperience()/user.getExperienceCap()),true);
+        progressBar.setProgress((int) (user.getExperience()*100/user.getExperienceCap()),true);
 
     }
 
@@ -248,7 +247,7 @@ public class MainActivity extends AppCompatActivity {
         outAnimation.setDuration(500);
         statsView.setAnimation(outAnimation);
     }
-    private void showfadeText()
+    private void showFadeText()
     {
         final Animation inAnimation = new AlphaAnimation(0.0f, 1.0f);
         inAnimation.setDuration(500);

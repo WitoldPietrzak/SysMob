@@ -1,64 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Activities.UserPanelActivity">
 
-    <TextView
-        android:id="@+id/UP_UsernameView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Username" />
-
-    <TextView
-        android:id="@+id/UP_LvlView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_toEndOf="@+id/UP_UsernameView"
-        android:text="LVL" />
-
-    <TextView
-        android:id="@+id/UP_CompletedTasksView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/UP_UsernameView"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="26dp"
-        android:text="Completed Tasks" />
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/UP_StreakView"
+        <TextView
+            android:id="@+id/UP_CompletedTasksView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Completed Tasks:" />
+
+        <TextView
+            android:id="@+id/UP_CompletedTasks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="textEnd"
+            android:layout_weight="1"
+            android:text="TextView" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/UP_CompletedTasksView"
-        android:layout_alignParentStart="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:text="Tasks Streak" />
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/UP_LastTaskCompletionDateView"
+        <TextView
+            android:id="@+id/UP_StreakView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tasks Streak:" />
+
+        <TextView
+            android:id="@+id/UP_Streak"
+            android:layout_width="wrap_content"
+            android:textAlignment="textEnd"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TextView" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/UP_StreakView"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp"
-        android:text="Last Task Completed On:" />
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal">
 
-    <ScrollView
-        android:id="@+id/UP_TaskListScrollView"
+        <TextView
+            android:id="@+id/UP_LastTaskCompletionDateView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Last Task Completed On:" />
+
+        <TextView
+            android:id="@+id/UP_LastTask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TextView"
+            android:textAlignment="textEnd" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/UP_LastTaskCompletionDateView">
+        android:orientation="horizontal">
 
-        <LinearLayout
-            android:id="@+id/UP_TaskListLayout"
+        <ScrollView
+            android:id="@+id/UP_TaskListScrollView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
+            android:layout_height="match_parent">
 
-</RelativeLayout>
+            <LinearLayout
+                android:id="@+id/UP_TaskListLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </ScrollView>
+    </LinearLayout>
+
+</LinearLayout>

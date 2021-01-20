@@ -9,8 +9,8 @@ import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.smproject.BreathChecker;
-import com.example.smproject.HealthAnalizer;
+import com.example.smproject.Utils.BreathChecker;
+import com.example.smproject.Utils.HealthAnalizer;
 import com.example.smproject.R;
 
 public class HealthAnalyzeActivity extends AppCompatActivity {

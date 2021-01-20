@@ -1,21 +1,20 @@
-package com.example.smproject;
+package com.example.smproject.Views;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.example.smproject.Adapters.CalendarAdapter;
+import com.example.smproject.R;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashSet;
 
 public class CalendarView extends LinearLayout {
     // calendar components

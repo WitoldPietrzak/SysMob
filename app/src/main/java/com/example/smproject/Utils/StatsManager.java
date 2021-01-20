@@ -1,4 +1,4 @@
-package com.example.smproject;
+package com.example.smproject.Utils;
 
 import android.app.Application;
 import android.content.Context;

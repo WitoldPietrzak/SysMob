@@ -35,9 +35,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/MA_expView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="70dp"
         android:textAlignment="textStart"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:visibility="invisible" />
 
     <Button
@@ -97,5 +97,6 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        app:srcCompat="@android:drawable/ic_menu_today" />
+        android:background="#00FFFFFF"
+        app:srcCompat="@android:drawable/ic_menu_edit" />
 </RelativeLayout>

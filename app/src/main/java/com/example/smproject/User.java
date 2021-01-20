@@ -5,6 +5,7 @@ import com.example.smproject.tasks.Task;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 public class User implements Serializable {
@@ -23,6 +24,8 @@ public class User implements Serializable {
     public User(String userName) {
         this.userName = userName;
         updateIsolationStatus();
+        currentTasks = new LinkedList<>();
+        completedTasks = new LinkedList<>();
     }
 
     public String getUserName() {
@@ -131,12 +134,23 @@ public class User implements Serializable {
             task.complete();
             Calendar calendar = Calendar.getInstance();
             calendar.add(Calendar.DAY_OF_MONTH,-2);
-            if(lastTaskCompletionDate.after(calendar.getTime()))
+            if(lastTaskCompletionDate == null ||lastTaskCompletionDate.after(calendar.getTime()))
             {
                 dayStreak++;
             }
 
+            if(lastTaskCompletionDate == null){
+                lastTaskCompletionDate = new Date();
+            }
             lastTaskCompletionDate.setTime(task.getCompletionDate().getTime());
+            this.currentTasks.remove(task);
+        }
+    }
+
+    public void giveUp(Task task)
+    {
+        if(this.currentTasks.contains(task)) {
+            task.giveUp();
             this.currentTasks.remove(task);
         }
     }

@@ -1,4 +1,4 @@
-package com.example.smproject;
+package com.example.smproject.Adapters;
 
 import android.graphics.Typeface;
 import android.view.Gravity;
@@ -10,13 +10,15 @@ import android.graphics.Color;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.example.smproject.R;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 
-class CalendarAdapter extends ArrayAdapter<Date> {
+public class CalendarAdapter extends ArrayAdapter<Date> {
     // for view inflation
     private LayoutInflater inflater;
     private Date isolationStart;

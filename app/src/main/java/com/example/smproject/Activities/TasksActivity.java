@@ -8,7 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.smproject.DatabaseHandler;
 import com.example.smproject.R;
+import com.example.smproject.User;
 import com.example.smproject.tasks.ProgressiveTask;
 import com.example.smproject.tasks.SingleTask;
 import com.example.smproject.tasks.StepTask;
@@ -25,6 +27,8 @@ public class TasksActivity extends AppCompatActivity {
             new SingleTask("Wyśpij się!", 100, 15),
             new StepTask("Przygotuj pizzę!", 2000, 4, 3, steptaskgoals),
             new ProgressiveTask("Spędź godzinę na czytaniu książki! ", 100, 2, 60, "minut"));
+    User user;
+
     TextView task1;
     TextView task2;
     TextView task3;
@@ -35,6 +39,8 @@ public class TasksActivity extends AppCompatActivity {
     Button button2;
     Button button3;
 
+    Thread thread;
+
     public TasksActivity() throws Exception {
     }
 
@@ -42,6 +48,10 @@ public class TasksActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tasks);
+
+        DatabaseHandler databaseHandler = new DatabaseHandler(this);
+        user = databaseHandler.getUser("TestUser");
+        databaseHandler.close();
 
         tasksManager = (TasksManager) getIntent().getSerializableExtra("tasksManager");
         tasksManager.getSingleTasks().add((SingleTask) dailyTasksPool.get(0));
@@ -63,14 +73,14 @@ public class TasksActivity extends AppCompatActivity {
         task3.setText(dailyTasksPool.get(2).getGoal() + "\n XP: " + dailyTasksPool.get(2).getExperience());
         rtime1.setText("Remaining time: " + dailyTasksPool.get(0).getRemainingTimeAsString());
         rtime2.setText("Remaining time: " + dailyTasksPool.get(1).getRemainingTimeAsString());
-        //rtime3.setText("Remaining time: " + dailyTasksPool.get(2).getRemainingTimeAsString());
-        rtime3.setText(tasksManager.Serialize());
-        System.out.println(tasksManager.Serialize());
+        rtime3.setText("Remaining time: " + dailyTasksPool.get(2).getRemainingTimeAsString());
+
 
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dailyTasksPool.get(0).pick();
+                user.addTask(dailyTasksPool.get(0));
                 button1.setVisibility(View.INVISIBLE);
             }
         });
@@ -78,6 +88,7 @@ public class TasksActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 dailyTasksPool.get(1).pick();
+                user.addTask(dailyTasksPool.get(1));
                 button2.setVisibility(View.INVISIBLE);
             }
         });
@@ -85,13 +96,14 @@ public class TasksActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 dailyTasksPool.get(2).pick();
+                user.addTask(dailyTasksPool.get(2));
                 button3.setVisibility(View.INVISIBLE);
 
             }
         });
 
 
-        final Thread thread = new Thread() {
+         thread = new Thread() {
 
             @Override
             public void run() {
@@ -114,7 +126,7 @@ public class TasksActivity extends AppCompatActivity {
                                     rtime2.setText("Good Luck!");
                                 }
                                 if(!dailyTasksPool.get(2).isPicked()) {
-                                    //rtime3.setText("Remaining time: " + dailyTasksPool.get(2).getRemainingTimeAsString());
+                                    rtime3.setText("Remaining time: " + dailyTasksPool.get(2).getRemainingTimeAsString());
                                 }
                                 else {
                                     rtime3.setText("Good Luck!");
@@ -129,5 +141,26 @@ public class TasksActivity extends AppCompatActivity {
         };
 
         thread.start();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        DatabaseHandler databaseHandler = new DatabaseHandler(this);
+        databaseHandler.updateUser(user);
+        databaseHandler.close();
+        thread.interrupt();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        DatabaseHandler databaseHandler = new DatabaseHandler(this);
+        user = databaseHandler.getUser("TestUser");
+        databaseHandler.close();
+    }
+
+    public void reloadView(){
+
     }
 }

@@ -59,6 +59,7 @@ public abstract class Task implements Serializable {
 
     public void complete() {
         completed = true;
+        picked = false;
         completionDate = Calendar.getInstance().getTime();
     }
 
@@ -94,6 +95,10 @@ public abstract class Task implements Serializable {
         return taskID;
     }
 
+    public void giveUp() {
+        picked = false;
+    }
+
     @Override
     public String toString() {
         return "Task{" +
@@ -106,8 +111,7 @@ public abstract class Task implements Serializable {
                 '}';
     }
 
-    public String Serialize()
-    {
+    public String Serialize() {
         Gson gson = new Gson();
         return gson.toJson(this);
     }

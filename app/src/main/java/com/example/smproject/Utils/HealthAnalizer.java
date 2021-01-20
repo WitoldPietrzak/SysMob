@@ -1,6 +1,8 @@
-package com.example.smproject;
+package com.example.smproject.Utils;
 
 import android.content.Context;
+
+import com.example.smproject.R;
 
 import java.util.Arrays;
 import java.util.List;

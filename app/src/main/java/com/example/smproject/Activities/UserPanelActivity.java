@@ -1,9 +1,14 @@
 package com.example.smproject.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.LinearLayoutCompat;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -11,52 +16,127 @@ import android.widget.TextView;
 import com.example.smproject.DatabaseHandler;
 import com.example.smproject.R;
 import com.example.smproject.User;
+import com.example.smproject.Views.SimpleTaskView;
 import com.example.smproject.tasks.Task;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class UserPanelActivity extends AppCompatActivity {
 
-    TextView userNameView;
-    TextView lvlView;
+
     TextView streakView;
     TextView completedTasksView;
     TextView lastTaskView;
     LinearLayout taskListLayout;
 
     User user;
+    Thread thread;
     List<Task> userTasks;
+    List<SimpleTaskView> taskViews = new LinkedList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_panel);
-        user = (User) getIntent().getSerializableExtra("user");
-        if(user == null)
-        {
-            user = new DatabaseHandler(this).getUser("TestUser");
-            return;
-        }
+
+        DatabaseHandler databaseHandler = new DatabaseHandler(this);
+        user = databaseHandler.getUser("TestUser");
+        databaseHandler.close();
+
+
+        streakView = findViewById(R.id.UP_Streak);
+        completedTasksView = findViewById(R.id.UP_CompletedTasks);
+        lastTaskView = findViewById(R.id.UP_LastTask);
+        taskListLayout = findViewById(R.id.UP_TaskListLayout);
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        DatabaseHandler databaseHandler = new DatabaseHandler(this);
+        databaseHandler.updateUser(user);
+        databaseHandler.close();
+        thread.interrupt();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        DatabaseHandler databaseHandler = new DatabaseHandler(this);
+        user = databaseHandler.getUser("TestUser");
+        databaseHandler.close();
+        taskViews.clear();
+        taskListLayout.removeAllViews();
         userTasks = user.getCurrentTasks();
+        reloadView();
+        for (int i = 0; i < taskViews.size(); i++) {
+            Animate(taskViews.get(i), 400 * i);
+        }
+    }
 
-        userNameView=findViewById(R.id.UP_UsernameView);
-        lvlView=findViewById(R.id.UP_LvlView);
-        streakView=findViewById(R.id.UP_StreakView);
-        completedTasksView=findViewById(R.id.UP_CompletedTasksView);
-        lastTaskView=findViewById(R.id.UP_LastTaskCompletionDateView);
-        taskListLayout=findViewById(R.id.UP_TaskListLayout);
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        if (userTasks == null || userTasks.isEmpty())
-        {
+    public void reloadView() {
+        if (userTasks == null) {
             return;
         }
-        for(Task task : userTasks)
-        {
-            TextView taskView = new TextView(this);
-            taskView.setText(task.getGoal());
-            taskListLayout.addView(taskView);
 
+        streakView.setText(String.valueOf(user.getDayStreak()));
+        completedTasksView.setText(String.valueOf(user.getTotalTasksCompleted()));
+        if(user.getLastTaskCompletionDate() == null){
+            lastTaskView.setText("Never");
+        }
+        else {
+            lastTaskView.setText(user.getLastTaskCompletionDate().toString());
         }
 
-        userNameView.setText(userNameView.getText()+user.getUserName());
+        for (final Task task : userTasks) {
+            SimpleTaskView taskView = new SimpleTaskView(this);
+            taskView.loadTask(task);
+            taskListLayout.addView(taskView);
+            taskViews.add(taskView);
+
+            taskView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getApplicationContext(), TaskDetailActivity.class);
+                    intent.putExtra("ID", task.getTaskID());
+                    startActivity(intent);
+                }
+            });
+
+
+        }
+        thread = new Thread() {
+
+            @Override
+            public void run() {
+                try {
+                    while (!this.isInterrupted()) {
+                        Thread.sleep(1000);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                for (SimpleTaskView taskView : taskViews) {
+                                    taskView.updateTime();
+                                }
+                            }
+                        });
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        thread.start();
+
+
+    }
+
+    private void Animate(View view, long offset) {
+        Animation animation = new AlphaAnimation(0.0f, 1.0f);
+        animation.setDuration(400);
+        animation.setStartOffset(offset);
+        view.setAnimation(animation);
     }
 }

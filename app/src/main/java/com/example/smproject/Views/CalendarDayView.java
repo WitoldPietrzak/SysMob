@@ -1,4 +1,4 @@
-package com.example.smproject;
+package com.example.smproject.Views;
 
 import android.content.Context;
 import android.graphics.Canvas;
