@@ -19,6 +19,8 @@ import com.example.smproject.User;
 import com.example.smproject.Views.SimpleTaskView;
 import com.example.smproject.tasks.Task;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -35,6 +37,8 @@ public class UserPanelActivity extends AppCompatActivity {
     List<Task> userTasks;
     List<SimpleTaskView> taskViews = new LinkedList<>();
 
+    DateFormat dateFormat;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +47,7 @@ public class UserPanelActivity extends AppCompatActivity {
         DatabaseHandler databaseHandler = new DatabaseHandler(this);
         user = databaseHandler.getUser("TestUser");
         databaseHandler.close();
+        dateFormat = DateFormat.getDateInstance();
 
 
         streakView = findViewById(R.id.UP_Streak);
@@ -87,7 +92,8 @@ public class UserPanelActivity extends AppCompatActivity {
             lastTaskView.setText("Never");
         }
         else {
-            lastTaskView.setText(user.getLastTaskCompletionDate().toString());
+            lastTaskView.setText(dateFormat.format(user.getLastTaskCompletionDate()));
+            //lastTaskView.setText(user.getLastTaskCompletionDate().toString());
         }
 
         for (final Task task : userTasks) {

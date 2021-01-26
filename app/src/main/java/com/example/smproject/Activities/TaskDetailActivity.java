@@ -17,12 +17,15 @@ import com.example.smproject.R;
 import com.example.smproject.User;
 import com.example.smproject.tasks.Task;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.UUID;
 
 public class TaskDetailActivity extends AppCompatActivity {
     UUID uuid;
     User user;
     Task task;
+    DateFormat dateFormat;
 
     TextView taskName;
     TextView taskID;
@@ -53,6 +56,7 @@ public class TaskDetailActivity extends AppCompatActivity {
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_detail);
+        dateFormat = new SimpleDateFormat(getResources().getString(R.string.datePattern));
 
         taskName = findViewById(R.id.ATD_taskName);
         taskID = findViewById(R.id.ATD_taskIDValue);
@@ -101,8 +105,8 @@ public class TaskDetailActivity extends AppCompatActivity {
         taskName.setText(task.getGoal());
         taskID.setText(task.getTaskID().toString());
         taskXP.setText(String.valueOf(task.getExperience()));
-        taskBegin.setText(task.getStartDate().toString());
-        taskEnd.setText(task.getEndDate().toString());
+        taskBegin.setText(dateFormat.format(task.getStartDate()));
+        taskEnd.setText(dateFormat.format(task.getEndDate()));
         taskIsActive.setText(String.valueOf(task.isPicked()));
         taskIsCompleted.setText(String.valueOf(task.isCompleted()));
             finishButton.setEnabled(task.isPicked());

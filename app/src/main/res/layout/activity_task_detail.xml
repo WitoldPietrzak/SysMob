@@ -13,7 +13,6 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
         android:background="@color/darkerTextColor"
-        android:text="TextView"
         android:padding="5dp"
         android:textAlignment="center"
         android:textSize="23dp" />
@@ -32,7 +31,6 @@
         android:id="@+id/ATD_userLevel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="20dp"
@@ -53,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dp"
             android:layout_weight="1"
-            android:text="Task ID:"
+            android:text="@string/task_id"
             android:textSize="18sp" />
 
         <TextView
@@ -62,7 +60,6 @@
             android:layout_height="match_parent"
             android:layout_marginRight="4dp"
             android:layout_weight="1"
-            android:text="TextView"
             android:textAlignment="textEnd"
             android:textSize="12sp" />
     </LinearLayout>
@@ -83,17 +80,16 @@
             android:layout_marginLeft="4dp"
             android:layout_weight="1"
             android:textSize="18sp"
-            android:text="XP" />
+            android:text="@string/xp" />
 
         <TextView
             android:id="@+id/ATD_taskXPValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginRight="4dp"
-            android:textSize="18sp"
-            android:text="TextView"
-            android:textAlignment="textEnd" />
+            android:layout_weight="1"
+            android:textAlignment="textEnd"
+            android:textSize="18sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -112,7 +108,7 @@
             android:layout_marginLeft="4dp"
             android:layout_weight="1"
             android:textSize="18sp"
-            android:text="Begin date" />
+            android:text="@string/begin_date" />
 
         <TextView
             android:id="@+id/ATD_BeginDateValue"
@@ -139,7 +135,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginLeft="4dp"
-            android:text="End Date"
+            android:text="@string/end_date"
             android:textSize="18sp"
             android:textAlignment="textStart" />
 
@@ -147,11 +143,10 @@
             android:id="@+id/ATD_EndDateValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="TextView"
             android:layout_marginRight="4dp"
-            android:textSize="18sp"
-            android:textAlignment="textEnd" />
+            android:layout_weight="1"
+            android:textAlignment="textEnd"
+            android:textSize="18sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -168,7 +163,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="is picked:"
+            android:text="@string/is_picked"
             android:layout_marginLeft="4dp"
             android:textSize="18sp" />
 
@@ -176,11 +171,10 @@
             android:id="@+id/ATD_isTaskActive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginRight="4dp"
-            android:textSize="18sp"
+            android:layout_weight="1"
             android:textAlignment="textEnd"
-            android:text="TextView" />
+            android:textSize="18sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -199,17 +193,16 @@
             android:layout_weight="1"
             android:layout_marginLeft="4dp"
             android:textSize="18sp"
-            android:text="is completed:" />
+            android:text="@string/is_completed" />
 
         <TextView
             android:id="@+id/ATD_isTaskCompleted"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
             android:layout_marginRight="4dp"
-            android:textAlignment="textEnd"
             android:layout_weight="1"
-            android:text="TextView" />
+            android:textAlignment="textEnd"
+            android:textSize="18sp" />
     </LinearLayout>
 
     <Button
@@ -219,7 +212,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="20dp"
-        android:text="Finish Task" />
+        android:text="@string/finish_task" />
 
     <Button
         android:id="@+id/ATD_GiveUpButton"
@@ -227,6 +220,6 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:text="Give Up" />
+        android:text="@string/give_up" />
 
 </LinearLayout>

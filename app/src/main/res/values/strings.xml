@@ -9,8 +9,8 @@
     <string name="poland">Poland</string>
     <string name="global">Global</string>
     <string name="levelDisplay">LVL {0}</string>
-    <string name="experienceDisplay">{0}/{1}</string>
-    <string name="daysDisplay">{0} Days streak</string>
+    <string name="experienceDisplay">{0}/{1} XP</string>
+    <string name="daysDisplay">{0} Tasks streak</string>
     <!-- Health Analyzer strings  -->
     <string name="start_test">Start Test</string>
     <string name="stop">Stop</string>
@@ -51,5 +51,31 @@
     <string name="sun">SUN</string>
     <string name="startIsolation">Start Isolation</string>
     <string name="stopIsolation">Stop Isolation</string>
+    <string name="last_task_completed_on">Last Task Completed On:</string>
+    <string name="completed_tasks">Completed Tasks:</string>
+    <string name="tasks_streak">Tasks Streak:</string>
+    <string name="datePattern">dd/MM/yyy HH:mm:ss</string>
+    <string name="user_panel">User Panel</string>
+    <string name="task_id">Task ID:</string>
+    <string name="xp">XP</string>
+    <string name="begin_date">Begin Date</string>
+    <string name="end_date">End Date</string>
+    <string name="is_picked">is picked:</string>
+    <string name="is_completed">is completed:</string>
+    <string name="finish_task">Finish Task</string>
+    <string name="give_up">Give Up</string>
+
+    <string-array name="tasks">
+        <item>Eat something healthy</item>
+        <item>Go to sleep early</item>
+        <item>Read a book</item>
+        <item>Learn something new</item>
+        <item>Learn some words in foreign language</item>
+        <item>Clean your room</item>
+        <item>Take a relaxing bath</item>
+        <item>Do some exercises</item>
+        <item>Do a laundry</item>
+        <item>Call your friends</item>
+    </string-array>
 
 </resources>

@@ -26,6 +26,7 @@ public class User implements Serializable {
         updateIsolationStatus();
         currentTasks = new LinkedList<>();
         completedTasks = new LinkedList<>();
+        checkTasksTime();
     }
 
     public String getUserName() {
@@ -152,6 +153,17 @@ public class User implements Serializable {
         if(this.currentTasks.contains(task)) {
             task.giveUp();
             this.currentTasks.remove(task);
+        }
+    }
+
+    public void checkTasksTime()
+    {
+        Calendar calendar = Calendar.getInstance();
+        for(Task task : currentTasks){
+            if(task.getRemainingTimeInMillis() < 0)
+            {
+                giveUp(task);
+            }
         }
     }
 

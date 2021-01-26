@@ -1,45 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Activities.HealthAnalyzeActivity">
 
     <TextView
         android:id="@+id/HA_titleTextView"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="90dp"
+        android:layout_margin="20sp"
+        android:layout_weight="3"
         android:text="@string/test_info"
-        android:textSize="20sp" />
+        android:textAlignment="center"
+        android:textSize="24sp" />
 
     <Button
         android:id="@+id/HA_StartButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_margin="20sp"
+        android:layout_weight="1"
         android:text="@string/start_test"
+        android:textSize="20sp"
         android:visibility="visible" />
 
-    <Button
-        android:id="@+id/HA_YesButton"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/HA_StartButton"
-        android:layout_centerHorizontal="true"
-        android:text="@string/yes"
-        android:visibility="invisible" />
+        android:layout_weight="2"
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/HA_NoButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/HA_YesButton"
-        android:layout_centerHorizontal="true"
-        android:text="@string/no"
-        android:visibility="invisible" />
-</RelativeLayout>
+        <Button
+            android:id="@+id/HA_YesButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10sp"
+            android:layout_weight="1"
+            android:text="@string/yes"
+            android:textSize="30sp"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/HA_NoButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10sp"
+            android:layout_weight="1"
+            android:text="@string/no"
+            android:textSize="30sp"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+</LinearLayout>
