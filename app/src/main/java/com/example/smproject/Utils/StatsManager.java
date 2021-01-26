@@ -1,8 +1,6 @@
 package com.example.smproject.Utils;
 
-import android.app.Application;
 import android.content.Context;
-import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -21,7 +19,7 @@ public class StatsManager {
     JSONObject reader;
     volatile boolean ready;
 
-    public StatsManager(Context context) throws JSONException {
+    public StatsManager(Context context) {
         this.context = context;
 
         RequestQueue queue = Volley.newRequestQueue(context);
@@ -59,13 +57,13 @@ public class StatsManager {
         int NewRecovered = globalSt.getInt("NewRecovered");
         int TotalRecovered = globalSt.getInt("TotalRecovered");
 
-        return "Global:\n" +
-                "New Confirmed cases: "+ String.valueOf(newConfirmed)+"\n" +
-                "Total Confirmed cases: "+String.valueOf(totalConfirmed)+"\n" +
-                "New Deaths: "+String.valueOf(newDeaths)+"\n" +
-                "Total Deaths: "+String.valueOf(totalDeaths)+"\n" +
-                "New Recovered: "+String.valueOf(NewRecovered)+"\n" +
-                "Total Recovered: "+String.valueOf(TotalRecovered);
+        return
+                "New Confirmed cases:\n "+ newConfirmed +"\n" +
+                "Total Confirmed cases:\n "+ totalConfirmed +"\n" +
+                "New Deaths:\n "+ newDeaths +"\n" +
+                "Total Deaths:\n "+ totalDeaths +"\n" +
+                "New Recovered:\n "+ NewRecovered +"\n" +
+                "Total Recovered:\n "+ TotalRecovered;
     }
 
     public String getStatsPoland() throws JSONException {
@@ -94,13 +92,13 @@ public class StatsManager {
         int NewRecovered = country.getInt("NewRecovered");
         int TotalRecovered = country.getInt("TotalRecovered");
 
-        return "Poland:\n" +
-                "New Confirmed cases: "+ String.valueOf(newConfirmed)+"\n" +
-                "Total Confirmed cases: "+String.valueOf(totalConfirmed)+"\n" +
-                "New Deaths: "+String.valueOf(newDeaths)+"\n" +
-                "Total Deaths: "+String.valueOf(totalDeaths)+"\n" +
-                "New Recovered: "+String.valueOf(NewRecovered)+"\n" +
-                "Total Recovered: "+String.valueOf(TotalRecovered);
+        return
+                "New Confirmed cases:\n "+ newConfirmed +"\n" +
+                "Total Confirmed cases:\n "+ totalConfirmed +"\n" +
+                "New Deaths:\n "+ newDeaths +"\n" +
+                "Total Deaths:\n "+ totalDeaths +"\n" +
+                "New Recovered:\n "+ NewRecovered +"\n" +
+                "Total Recovered:\n "+ TotalRecovered;
 
     }
 

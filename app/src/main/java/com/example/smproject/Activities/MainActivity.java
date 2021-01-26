@@ -9,11 +9,10 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.smproject.DatabaseHandler;
+import com.example.smproject.Utils.DatabaseHandler;
 import com.example.smproject.R;
 import com.example.smproject.Utils.StatsManager;
 import com.example.smproject.User;
@@ -29,9 +28,9 @@ public class MainActivity extends AppCompatActivity {
     Button calendarButton;
     Button analyserButton;
     Button statsButton;
-    ImageButton userPanelButton;
+    Button userPanelButton;
     TextView statsView;
-    TextView statsRegion;
+    Button statsRegion;
     TextView lvlView;
     TextView streakView;
     TextView expView;
@@ -48,11 +47,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        try {
-            statsManager = new StatsManager(this);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+
+        statsManager = new StatsManager(this);
 
         tasksButton = findViewById(R.id.MA_TasksButton);
         calendarButton = findViewById(R.id.MA_CalendarButton);
@@ -66,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.MA_progressBar);
         userPanelButton = findViewById(R.id.MA_UserPanelButton);
 
-        mediaPlayer = MediaPlayer.create(this,R.raw.klik);
+        mediaPlayer = MediaPlayer.create(this, R.raw.klik);
 
 
         DatabaseHandler databaseHandler = new DatabaseHandler(this);
@@ -91,31 +87,33 @@ public class MainActivity extends AppCompatActivity {
         tasksButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),TasksActivity.class);
-                intent.putExtra("tasksManager",tasksManager);
-                intent.putExtra("user",user);
+                Intent intent = new Intent(getApplicationContext(), TasksActivity.class);
+                intent.putExtra("tasksManager", tasksManager);
+                intent.putExtra("user", user);
                 startActivity(intent);
             }
         });
         statsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (statsView.getVisibility() == View.INVISIBLE) {
-                    statsView.setVisibility(View.VISIBLE);
+                if (statsView.getVisibility() != View.VISIBLE) {
+                    //statsView.setVisibility(View.VISIBLE);
+                    showStats();
                     showStatsText();
                     statsRegion.setVisibility(View.VISIBLE);
                     try {
                         statsView.setText(statsManager.getStatsGlobal());
-                        statsRegion.setText("Global");
+                        statsRegion.setText(R.string.global);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                     statsButton.setText(getResources().getString(R.string.hideStatistics));
                     return;
                 }
-                statsView.setVisibility(View.INVISIBLE);
+                statsView.setVisibility(View.GONE);
                 hideStatsText();
-                statsRegion.setVisibility(View.INVISIBLE);
+                hideStats();
+                statsRegion.setVisibility(View.GONE);
                 statsButton.setText(getResources().getString(R.string.showStatistics));
             }
         });
@@ -123,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
         statsRegion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (statsRegion.getText().equals(getResources().getString(R.string.global)))  {
+                if (statsRegion.getText().equals(getResources().getString(R.string.global))) {
                     statsRegion.setText(getResources().getString(R.string.poland));
                     try {
                         showLocalStats();
@@ -144,8 +142,8 @@ public class MainActivity extends AppCompatActivity {
         userPanelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),UserPanelActivity.class);
-                intent.putExtra("user",user);
+                Intent intent = new Intent(getApplicationContext(), UserPanelActivity.class);
+                intent.putExtra("user", user);
                 startActivity(intent);
             }
         });
@@ -154,8 +152,8 @@ public class MainActivity extends AppCompatActivity {
         calendarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),CalendarActivity.class);
-                intent.putExtra("user",user);
+                Intent intent = new Intent(getApplicationContext(), CalendarActivity.class);
+                intent.putExtra("user", user);
                 startActivity(intent);
             }
         });
@@ -187,8 +185,8 @@ public class MainActivity extends AppCompatActivity {
     private void updateDisplay() {
         lvlView.setText(MessageFormat.format(getResources().getString(R.string.levelDisplay), user.getLevel()));
         expView.setText(MessageFormat.format(getResources().getString(R.string.experienceDisplay), user.getExperience(), user.getExperienceCap()));
-        streakView.setText(MessageFormat.format(getResources().getString(R.string.daysDisplay),user.getDayStreak()));
-        progressBar.setProgress((int) (user.getExperience()*100/user.getExperienceCap()),true);
+        streakView.setText(MessageFormat.format(getResources().getString(R.string.daysDisplay), user.getDayStreak()));
+        progressBar.setProgress((int) (user.getExperience() * 100 / user.getExperienceCap()), true);
 
     }
 
@@ -199,18 +197,15 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void showGlobalStats() throws JSONException {
-        //statsView.setText(statsManager.getStatsGlobal());
         updateStatsText(statsManager.getStatsGlobal());
-        statsRegion.setText("Global");
+        statsRegion.setText(getResources().getString(R.string.global));
     }
 
     private void showLocalStats() throws JSONException {
-        //statsView.setText(statsManager.getStatsPoland());
         updateStatsText(statsManager.getStatsPoland());
     }
 
-    private void updateStatsText(final String text)
-    {
+    private void updateStatsText(final String text) {
         final Animation inAnimation = new AlphaAnimation(0.0f, 1.0f);
         inAnimation.setDuration(500);
         Animation outAnimation = new AlphaAnimation(1.0f, 0.0f);
@@ -235,64 +230,76 @@ public class MainActivity extends AppCompatActivity {
         statsView.startAnimation(outAnimation);
     }
 
-    private void showStatsText()
-    {
+    private void showStatsText() {
         final Animation inAnimation = new AlphaAnimation(0.0f, 1.0f);
         inAnimation.setDuration(500);
         statsView.startAnimation(inAnimation);
     }
-    private void hideStatsText()
-    {
+
+    private void hideStatsText() {
         Animation outAnimation = new AlphaAnimation(1.0f, 0.0f);
         outAnimation.setDuration(500);
         statsView.setAnimation(outAnimation);
     }
-    private void showFadeText()
-    {
-        final Animation inAnimation = new AlphaAnimation(0.0f, 1.0f);
-        inAnimation.setDuration(500);
-        Animation outAnimation = new AlphaAnimation(1.0f, 0.0f);
-        outAnimation.setDuration(500);
-        outAnimation.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
 
-            }
+    private void startAnimation() {
+        showView(userPanelButton, 0);
+        showView(tasksButton, 500);
+        showView(analyserButton, 1000);
+        showView(calendarButton, 1500);
+        showView(statsButton, 2000);
 
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                statsView.startAnimation(inAnimation);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
-        statsView.startAnimation(outAnimation);
-    }
-
-    private void startAnimation()
-    {
-        ViewAInAnim(analyserButton,0);
-        ViewAInAnim(tasksButton,1000);
-        ViewAInAnim(calendarButton,2000);
-        ViewAInAnim(statsButton,3000);
-
-        ViewAInAnim(userPanelButton,4000);
-        ViewAInAnim(lvlView,4000);
-        ViewAInAnim(streakView,4000);
-        ViewAInAnim(expView,4000);
-        ViewAInAnim(progressBar,4000);
+        showView(lvlView, 2500);
+        showView(streakView, 2500);
+        showView(expView, 2500);
+        showView(progressBar, 2500);
 
     }
 
-    private void ViewAInAnim(View view, long offset)
-    {
-        Animation animation = new AlphaAnimation(0.0f,1.0f);
-        animation.setDuration(1000);
+    private void showView(View view, long offset) {
+        Animation animation = new AlphaAnimation(0.0f, 1.0f);
+        animation.setDuration(500);
         animation.setStartOffset(offset);
         view.setAnimation(animation);
+        view.setVisibility(View.VISIBLE);
+    }
+
+    private void hideView(View view) {
+        Animation animation = new AlphaAnimation(1.0f, 0.0f);
+        animation.setDuration(500);
+        animation.setStartOffset(0);
+        view.setAnimation(animation);
+        view.setVisibility(View.GONE);
+    }
+
+    private void showStats() {
+
+        hideView(tasksButton);
+        hideView(calendarButton);
+        hideView(analyserButton);
+        hideView(userPanelButton);
+        hideView(lvlView);
+        hideView(streakView);
+        hideView(expView);
+        hideView(progressBar);
+        showView(statsView, 500);
+
+
+    }
+
+    private void hideStats() {
+
+        showView(tasksButton, 500);
+        showView(calendarButton, 500);
+        showView(analyserButton, 500);
+        showView(userPanelButton, 500);
+        showView(lvlView, 500);
+        showView(streakView, 500);
+        showView(expView, 500);
+        showView(progressBar, 500);
+        hideView(statsView);
+
+
     }
 
 

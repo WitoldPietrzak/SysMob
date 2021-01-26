@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.MainActivity" >
+
+    <Button
+        android:id="@+id/MA_TasksButton"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/MA_HealthAnalyzerButton"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/tasks"
+        android:textSize="22sp" />
+
+    <Button
+        android:id="@+id/MA_HealthAnalyzerButton"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/health_analyze"
+        android:textSize="22sp" />
+
+    <Button
+        android:id="@+id/MA_CalendarButton"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/MA_TasksButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/calendar"
+        android:textSize="22sp" />
+
+    <FrameLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/MA_expView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:background="#1D090202">
+
+
+        <TextView
+            android:id="@+id/MA_StatsTextView"
+            android:layout_width="300dp"
+            android:layout_height="150dp"
+            android:textAlignment="textStart"
+            android:textSize="18sp"
+            android:visibility="invisible" />
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/MA_StatsButton"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/MA_CalendarButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/showStatistics"
+        android:textSize="22sp" />
+
+    <ProgressBar
+        android:id="@+id/MA_progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40sp"
+        android:scaleY="5"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="false"
+        android:layout_marginBottom="5dp"
+        android:progress="70" />
+
+    <TextView
+        android:id="@+id/MA_levelView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/MA_progressBar"
+        android:layout_marginStart="10dp"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/MA_expView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/MA_progressBar"
+        android:layout_centerHorizontal="true"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/MA_streakView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/MA_expView"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="10dp"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/MA_statsRegion"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/MA_StatsButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:textSize="22sp"
+        android:visibility="invisible" />
+
+    <ImageButton
+        android:id="@+id/MA_UserPanelButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/MA_streakView"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="#00FFFFFF"
+        app:srcCompat="@android:drawable/ic_menu_edit" />
+</RelativeLayout>

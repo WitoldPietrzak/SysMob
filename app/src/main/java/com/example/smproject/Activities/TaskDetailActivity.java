@@ -2,17 +2,13 @@ package com.example.smproject.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.animation.ObjectAnimator;
-import android.opengl.Visibility;
 import android.os.Bundle;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.smproject.DatabaseHandler;
+import com.example.smproject.Utils.DatabaseHandler;
 import com.example.smproject.R;
 import com.example.smproject.User;
 import com.example.smproject.tasks.Task;

@@ -16,31 +16,27 @@ import java.sql.Time;
 import java.util.concurrent.TimeUnit;
 
 public class TasksTakeView extends androidx.appcompat.widget.LinearLayoutCompat {
-
     TextView taskNameView;
     TextView XPPointsView;
     TextView timeView;
     Button takeButton;
     Task task;
 
-    public void loadTask(Task task){
+    public void loadTask(Task task) {
         this.task = task;
 
         taskNameView.setText(task.getGoal());
         XPPointsView.setText(String.valueOf(task.getExperience()) + " XP");
-        timeView.setText((int) TimeUnit.MILLISECONDS.toDays(task.getRemainingTimeInMillis())+1+" Days");
-       updateUI();
+        timeView.setText((int) TimeUnit.MILLISECONDS.toDays(task.getRemainingTimeInMillis()) + 1 + " Days");
+        updateUI();
 
     }
 
-    public void updateUI()
-    {
-        if (task.isPicked())
-        {
+    public void updateUI() {
+        if (task.isPicked()) {
             takeButton.setText("Task taken");
             takeButton.setEnabled(false);
-        }
-        else {
+        } else {
             takeButton.setText("Take Task");
             takeButton.setEnabled(true);
         }
@@ -56,7 +52,7 @@ public class TasksTakeView extends androidx.appcompat.widget.LinearLayoutCompat 
 
     }
 
-    public void assignButtonAction(OnClickListener onClickListener){
+    public void assignButtonAction(OnClickListener onClickListener) {
         takeButton.setOnClickListener(onClickListener);
     }
 
@@ -69,6 +65,7 @@ public class TasksTakeView extends androidx.appcompat.widget.LinearLayoutCompat 
 
     public TasksTakeView(@NonNull Context context) {
         super(context);
+
         initControl(context);
     }
 

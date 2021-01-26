@@ -13,11 +13,14 @@ import com.example.smproject.Utils.BreathChecker;
 import com.example.smproject.Utils.HealthAnalizer;
 import com.example.smproject.R;
 
+import java.text.MessageFormat;
+
 public class HealthAnalyzeActivity extends AppCompatActivity {
     Button startButton;
     Button yesButton;
     Button noButton;
     TextView textView;
+    TextView questionCounter;
     HealthAnalizer healthAnalizer;
     BreathChecker breathChecker;
 
@@ -33,6 +36,7 @@ public class HealthAnalyzeActivity extends AppCompatActivity {
         yesButton = findViewById(R.id.HA_YesButton);
         noButton = findViewById(R.id.HA_NoButton);
         textView = findViewById(R.id.HA_titleTextView);
+        questionCounter = findViewById(R.id.HA_QuestionCounterView);
 
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +52,8 @@ public class HealthAnalyzeActivity extends AppCompatActivity {
                         //textView.setText(healthAnalizer.getCurrentQuestion());
                         updateText(healthAnalizer.getCurrentQuestion());
                         startButton.setVisibility(View.INVISIBLE);
+                        questionCounter.setVisibility(View.VISIBLE);
+                        questionCounter.setText(MessageFormat.format(getResources().getString(R.string.question), healthAnalizer.getIterator() + 1, healthAnalizer.getQuestionCount()));
                         yesButton.setVisibility(View.VISIBLE);
                         noButton.setVisibility(View.VISIBLE);
                     }
@@ -73,10 +79,10 @@ public class HealthAnalyzeActivity extends AppCompatActivity {
     }
 
     private void endAnalise() {
-        //textView.setText(healthAnalizer.analyzeResults(breathChecker.hasCovid()));
         updateText(healthAnalizer.analyzeResults(breathChecker.hasCovid()));
         yesButton.setVisibility(View.INVISIBLE);
         noButton.setVisibility(View.INVISIBLE);
+        questionCounter.setVisibility(View.INVISIBLE);
     }
 
     private void sendAnswer(boolean answer) {
@@ -88,8 +94,9 @@ public class HealthAnalyzeActivity extends AppCompatActivity {
         updateText(healthAnalizer.getCurrentQuestion());
     }
 
-    private void updateText(final String text)
-    {
+    private void updateText(final String text) {
+
+        questionCounter.setText(MessageFormat.format(getResources().getString(R.string.question), healthAnalizer.getIterator() + 1, healthAnalizer.getQuestionCount()));
         final Animation inAnimation = new AlphaAnimation(0.0f, 1.0f);
         inAnimation.setDuration(500);
         Animation outAnimation = new AlphaAnimation(1.0f, 0.0f);

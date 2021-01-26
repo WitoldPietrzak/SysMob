@@ -12,12 +12,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.TaskDetailActivity"></activity>
-        <activity android:name=".Activities.UserPanelActivity" />
-        <activity android:name=".Activities.HealthAnalyzeActivity" />
-        <activity android:name=".Activities.TasksActivity" />
-        <activity android:name=".Activities.CalendarActivity" />
-        <activity android:name=".Activities.MainActivity">
+        <activity
+            android:name=".Activities.TaskDetailActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Activities.UserPanelActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Activities.HealthAnalyzeActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Activities.TasksActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Activities.CalendarActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Activities.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

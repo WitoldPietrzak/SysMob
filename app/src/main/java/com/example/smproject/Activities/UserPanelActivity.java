@@ -1,7 +1,6 @@
 package com.example.smproject.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.LinearLayoutCompat;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,17 +9,15 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.smproject.DatabaseHandler;
+import com.example.smproject.Utils.DatabaseHandler;
 import com.example.smproject.R;
 import com.example.smproject.User;
 import com.example.smproject.Views.SimpleTaskView;
 import com.example.smproject.tasks.Task;
 
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -89,7 +86,7 @@ public class UserPanelActivity extends AppCompatActivity {
         streakView.setText(String.valueOf(user.getDayStreak()));
         completedTasksView.setText(String.valueOf(user.getTotalTasksCompleted()));
         if(user.getLastTaskCompletionDate() == null){
-            lastTaskView.setText("Never");
+            lastTaskView.setText(R.string.never);
         }
         else {
             lastTaskView.setText(dateFormat.format(user.getLastTaskCompletionDate()));
@@ -116,7 +113,7 @@ public class UserPanelActivity extends AppCompatActivity {
         if(userTasks.isEmpty())
         {
             TextView textView = new TextView(this);
-            textView.setText("No tasks avalible at the moment");
+            textView.setText(R.string.no_tasks);
             textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             textView.setPadding(0,350,0,0);
             textView.setTextColor(getResources().getColor(R.color.darkerTextColor));

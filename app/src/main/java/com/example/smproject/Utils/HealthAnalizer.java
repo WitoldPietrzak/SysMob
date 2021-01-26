@@ -28,7 +28,7 @@ public class HealthAnalizer {
         this.context = context;
     }
 
-    public int getIterator(Context context) {
+    public int getIterator() {
         return iterator;
     }
 
@@ -47,6 +47,9 @@ public class HealthAnalizer {
             positive_symptoms++;
         }
         iterator++;
+    }
+    public int getQuestionCount(){
+        return symptoms_list.size();
     }
 
 

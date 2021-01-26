@@ -8,7 +8,7 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 
 import com.example.smproject.Views.CalendarView;
-import com.example.smproject.DatabaseHandler;
+import com.example.smproject.Utils.DatabaseHandler;
 import com.example.smproject.R;
 import com.example.smproject.User;
 

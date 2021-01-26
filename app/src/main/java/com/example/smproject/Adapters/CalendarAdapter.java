@@ -12,14 +12,14 @@ import android.widget.TextView;
 
 import com.example.smproject.R;
 
-import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashSet;
+
 
 public class CalendarAdapter extends ArrayAdapter<Date> {
-    // for view inflation
+
     private LayoutInflater inflater;
     private Date isolationStart;
     private Date isolationEnd;
@@ -41,19 +41,19 @@ public class CalendarAdapter extends ArrayAdapter<Date> {
         int month = calendar.get(Calendar.MONTH);
         int year = calendar.get(Calendar.YEAR);
 
-        // today
+
         Date today = new Date();
         Calendar calendarToday = Calendar.getInstance();
         calendarToday.setTime(today);
 
-        // inflate item if it does not exist yet
+
         if (view == null)
             view = inflater.inflate(R.layout.custom_calendar_day, parent, false);
-        // clear styling
+
         ((TextView) view).setTypeface(null, Typeface.NORMAL);
 
         if (month != calendarToday.get(Calendar.MONTH) || year != calendarToday.get(Calendar.YEAR)) {
-            // if this day is outside current month, grey it out
+
             ((TextView) view).setTextColor(getContext().getColor(R.color.darkerTextColor));
         }
         if (isolationStart != null && isolationEnd != null) {
@@ -62,13 +62,13 @@ public class CalendarAdapter extends ArrayAdapter<Date> {
             }
         }
         if (day == calendarToday.get(Calendar.DATE)) {
-            // if it is today, set it to blue/bold
-            //((TextView)view).setTextColor(Color.WHITE);
+
+
             ((TextView) view).setGravity(Gravity.CENTER);
             view.setBackgroundResource(R.drawable.background_circle_calendar);
         }
 
-        // set text
+
         ((TextView) view).setText(String.valueOf(calendar.get(Calendar.DATE)));
 
         return view;

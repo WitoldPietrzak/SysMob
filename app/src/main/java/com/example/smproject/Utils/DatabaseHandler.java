@@ -1,4 +1,4 @@
-package com.example.smproject;
+package com.example.smproject.Utils;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.smproject.User;
 import com.example.smproject.tasks.ProgressiveTask;
 import com.example.smproject.tasks.SingleTask;
 import com.example.smproject.tasks.StepTask;
@@ -27,12 +28,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "SMDB";
     private static final String TABLE_1_NAME = "Users";
     private static final String TABLE_2_NAME = "Tasks";
-    // private static final String TABLE_3_NAME = "UserTasks";
-    //private static final String[] TABLE_1_FIELDS = {"userName", "level", "experience", "isOnIsolation", "lastTaskCompletionDate", "isolationStartDate,stepsAmount,currentStep", "goalValue", "currentValue"};
     private static final String[] TABLE_1_FIELDS = {"userName", "userData"};
-    // private static final String[] TABLE_2_FIELDS = {"taskID", "taskType", "goal", "experience", "picked", "completed", "startDate", "endDate", "completionDate"};
     private static final String[] TABLE_2_FIELDS = {"taskID", "taskData"};
-    // private static final String[] Table_3_FIELDS = {"userName", "taskID"};
 
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -42,42 +39,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-
-
-
-                /*
-
-        String CREATION_TABLE_1 = "CREATE TABLE IF NOT EXISTS " +
-                "Users " +
-                "(" +
-                "userName TEXT PRIMARY KEY," +
-                "level INTEGER DEFAULT 0," +
-                "experience LONG DEFAULT 0," +
-                "isOnIsolation INTEGER DEFAULT 0," +
-                "lastTaskCompletionDate DATE," +
-                "isolationStartDate DATE" +
-                "); ";
-
-
-        String CREATION_TABLE_2 = "CREATE TABLE IF NOT EXISTS " +
-                "Tasks " +
-                "(" +
-                "taskID TEXT PRIMARY KEY," +
-                "taskType TEXT NOT NULL," +
-                "goal TEXT," +
-                "experience INTEGER DEFAULT 0," +
-                "picked INTEGER DEFAULT 0," +
-                "completed INTEGER DEFAULT 0," +
-                "startDate DATE," +
-                "endDate DATE," +
-                "completionDate DATE," +
-                "stepsAmount INTEGER," +
-                "currentStep INTEGER," +
-                "goalValue DOUBLE," +
-                "currentValue DOUBLE" +
-                "); ";
-
-         */
 
 
         String CREATION_TABLE_1 = "CREATE TABLE IF NOT EXISTS " +
@@ -93,28 +54,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 "taskID TEXT PRIMARY KEY," +
                 "taskData BLOB NOT NULL" +
                 "); ";
-        /*
-        String CREATION_TABLE_3 = "CREATE TABLE IF NOT EXISTS " +
-                "UserTasks " +
-                "(" +
-                "userName TEXT," +
-                "taskID TEXT," +
-                "FOREIGN KEY (userName) REFERENCES Users(userName)," +
-                "FOREIGN KEY (taskID) REFERENCES Tasks(taskID)" +
-                "); ";
-
-         */
 
         db.execSQL(CREATION_TABLE_1);
         db.execSQL(CREATION_TABLE_2);
-        //db.execSQL(CREATION_TABLE_3);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_1_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_2_NAME);
-        //db.execSQL("DROP TABLE IF EXISTS " + TABLE_3_NAME);
 
     }
 
@@ -123,14 +71,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-                /*
-        values.put(TABLE_1_FIELDS[0], user.getUserName());
-        values.put(TABLE_1_FIELDS[1], user.getLevel());
-        values.put(TABLE_1_FIELDS[2], user.getExperience());
-        values.put(TABLE_1_FIELDS[3], user.isOnIsolation());
-        values.put(TABLE_1_FIELDS[4], user.getLastTaskCompletionDate().toString());
-
-         */
         values.put(TABLE_1_FIELDS[0], user.getUserName());
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();

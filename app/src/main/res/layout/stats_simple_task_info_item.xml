@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
         android:width="100dp"
-        android:background="@color/darkerTextColor"
+        android:background="@drawable/custom_button_bg"
         android:text="taskName"
         android:textAlignment="center" />
 

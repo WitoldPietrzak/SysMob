@@ -8,6 +8,15 @@
     tools:context=".Activities.HealthAnalyzeActivity">
 
     <TextView
+        android:id="@+id/HA_QuestionCounterView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:visibility="gone" />
+
+    <TextView
         android:id="@+id/HA_titleTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

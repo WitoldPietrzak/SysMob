@@ -55,56 +55,57 @@ android:layout_height="30dp"
 android:gravity="center_vertical"
 android:orientation="horizontal">
 
-<TextView
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:layout_weight="1"
-    android:gravity="center_horizontal"
-    android:textColor="#222222"
-    android:text="@string/mon"/>
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/mon"
+        android:textAlignment="viewStart"
+        android:textColor="@color/colorPrimary" />
 
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:gravity="center_horizontal"
-        android:textColor="#222222"
+        android:textAlignment="viewStart"
+        android:textColor="@color/colorPrimary"
         android:text="@string/tue"/>
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:gravity="center_horizontal"
-        android:textColor="#222222"
+        android:textAlignment="viewStart"
+        android:textColor="@color/colorPrimary"
         android:text="@string/wen"/>
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:gravity="center_horizontal"
-        android:textColor="#222222"
+        android:textAlignment="viewStart"
+        android:textColor="@color/colorPrimary"
         android:text="@string/thu"/>
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:gravity="center_horizontal"
-        android:textColor="#222222"
+        android:textAlignment="viewStart"
+        android:textColor="@color/colorPrimary"
         android:text="@string/fri"/>
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:gravity="center_horizontal"
-        android:textColor="#222222"
+        android:textAlignment="viewStart"
+        android:textColor="@color/colorPrimary"
         android:text="@string/sat"/>
+
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:gravity="center_horizontal"
-        android:textColor="#222222"
-        android:text="@string/sun"/>
+        android:textAlignment="viewStart"
+        android:text="@string/sun"
+        android:textColor="@color/colorAccent" />
 
 </LinearLayout>
 
@@ -117,13 +118,19 @@ android:numColumns="7"/>
     <Button
         android:id="@+id/CL_startIsolationButton"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/startIsolation" />
+        android:layout_height="80sp"
+        android:layout_marginHorizontal="15sp"
+        android:layout_marginVertical="10sp"
+        android:text="@string/startIsolation"
+        android:textSize="24sp" />
 
     <Button
         android:id="@+id/CL_stopIsolationButton"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/stopIsolation" />
+        android:layout_height="80sp"
+        android:layout_marginHorizontal="15sp"
+        android:layout_marginVertical="10sp"
+        android:text="@string/stopIsolation"
+        android:textSize="24sp" />
 
 </LinearLayout>

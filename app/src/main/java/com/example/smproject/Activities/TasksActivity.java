@@ -2,25 +2,17 @@ package com.example.smproject.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import com.example.smproject.DatabaseHandler;
+import com.example.smproject.Utils.DatabaseHandler;
 import com.example.smproject.R;
 import com.example.smproject.User;
 import com.example.smproject.Views.TasksTakeView;
-import com.example.smproject.tasks.ProgressiveTask;
-import com.example.smproject.tasks.SingleTask;
-import com.example.smproject.tasks.StepTask;
 import com.example.smproject.tasks.Task;
 import com.example.smproject.tasks.TasksGenerator;
-import com.example.smproject.tasks.TasksManager;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -30,7 +22,7 @@ public class TasksActivity extends AppCompatActivity {
     User user;
     LinearLayout mainLayout;
 
-    public TasksActivity() throws Exception {
+    public TasksActivity() {
     }
 
     @Override
@@ -83,7 +75,5 @@ public class TasksActivity extends AppCompatActivity {
         databaseHandler.close();
     }
 
-    public void reloadView(){
 
-    }
 }

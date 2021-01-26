@@ -2,7 +2,7 @@
     <!-- Main Activity strings -->
     <string name="app_name">SMProject</string>
     <string name="health_analyze">Health analyze</string>
-    <string name="tasks">Tasks</string>
+    <string name="tasks"> Available Tasks</string>
     <string name="calendar">Calendar</string>
     <string name="showStatistics">Show Statistics</string>
     <string name="hideStatistics">Hide Statistics</string>
@@ -13,6 +13,7 @@
     <string name="daysDisplay">{0} Tasks streak</string>
     <!-- Health Analyzer strings  -->
     <string name="start_test">Start Test</string>
+    <string name="question">Question: \n{0}/{1}</string>
     <string name="stop">Stop</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
@@ -64,6 +65,9 @@
     <string name="is_completed">is completed:</string>
     <string name="finish_task">Finish Task</string>
     <string name="give_up">Give Up</string>
+    <string name="current_tasks">Current Tasks</string>
+    <string name="never">Never</string>
+    <string name="no_tasks">No tasks avalible at the moment</string>
 
     <string-array name="tasks">
         <item>Eat something healthy</item>
