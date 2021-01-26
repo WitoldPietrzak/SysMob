@@ -1,6 +1,6 @@
 <resources>
     <!-- Main Activity strings -->
-    <string name="app_name">SMProject</string>
+    <string name="app_name">Isolator</string>
     <string name="health_analyze">Health analyze</string>
     <string name="tasks"> Available Tasks</string>
     <string name="calendar">Calendar</string>
